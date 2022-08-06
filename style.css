@@ -4,6 +4,118 @@
 	box-sizing: border-box;
 }
 
+:root{
+    /* Home page */
+    --hero-heading-font-large : 110px;
+    --hero-heading-font-medium : 100px;
+    --hero-heading-font-normal : 50px;
+    --hero-heading-font-small : 40px;
+}
+
+
+/* desktop */
+@media all and (min-width: 1500px) {
+    .hero-heading{
+        font-size: var(--hero-heading-font-large);
+		margin-left: 150px;
+    }
+	.home-img{
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 100vh;
+		width: 50%;
+	}
+	.project-container{
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-gap: 5%;
+	}
+	.contact-section{
+		padding: 100px 150px;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-gap: 50px;
+	}
+  }
+  /* pad */
+  @media all and (min-width: 800px) and (max-width: 1499px) {
+    .hero-heading{
+        font-size: var(--hero-heading-font-medium);
+		margin-left: 100px;
+    }
+	.home-img{
+		position: absolute;
+		top: 0;
+		right: 10%;
+		height: 100vh;
+		width: 650px;
+	}
+	.project-container{
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-gap: 5%;
+		margin: 3%;
+	}
+	.contact-section{
+		padding: 100px 100px;
+		width: 650px;
+		margin-top: 30px;
+		margin-right: 40%;
+	}
+  }
+  /* mini pad */
+  @media all and (min-width: 500px) and (max-width: 799px) {
+    .hero-heading{
+        font-size: var(--hero-heading-font-normal);
+		margin-left: 70px;
+    }
+	.home-img{
+		position: absolute;
+		top: 0;
+		right: 50px;
+		height: 100vh;
+		width: 400px;
+	}
+	.project-container{
+		display: block;
+		margin: 5%;
+	}
+	.project-card{
+		margin-bottom: 50px;
+	}
+	.contact-section{
+		padding: 100px 50px;
+		margin-top: 30px;
+	}
+  }
+  /* mobile */
+  @media all and (max-width: 499px) {
+    .hero-heading{
+        font-size: var(--hero-heading-font-small);
+		margin-left: 20px;
+    }
+	.home-img{
+		position: absolute;
+		top: 0;
+		right: 30px;
+		height: 100vh;
+		/* width: 300px; */
+	}
+	.project-container{
+		display: block;
+		margin: 20px;
+	}
+	.project-card{
+		margin-bottom: 30px;
+	}
+	.contact-section{
+		padding: 100px 20px;
+		margin-top: 30px;
+	}
+  }
+/* @import url("rwd.css"); */
+
 body{
 	width: 100%;
 	max-width: 1400px;
@@ -61,7 +173,7 @@ body{
 .home-section{
 	width: 100%;
 	height: 100vh;
-	padding: 0 150px;
+	/* padding: 0 150px; */
 	display: flex;
 	align-items: center;
 	position: fixed;
@@ -72,17 +184,17 @@ body{
 
 .hero-heading{
 	color: #fff;
-	font-size: 120px;
+	/* font-size: 120px; */
 	text-transform: capitalize;
 	font-weight: 300;
 }
 
 .home-img{
-	position: absolute;
+	/* position: absolute;
 	top: 0;
 	right: 0;
 	height: 100vh;
-	width: 50%;
+	width: 50%; */
 	object-fit: cover;
 	opacity: 0.2;	
 }
@@ -92,7 +204,7 @@ body{
 .project-section{
 	width: 100%;
 	min-height: 100vh;
-	padding: 150px 100px 100px;
+	/* padding: 150px 100px 100px; */
 	position: fixed;
 	top: 0;
 	transition: 1s;
@@ -111,11 +223,11 @@ body{
 	-webkit-text-stroke: 18px transparent;
 }
 
-.project-container{
+/* .project-container{
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	grid-gap: 100px;
-}
+	grid-gap: 5%;
+} */
 
 .project-card{
 	height: 400px;
@@ -470,11 +582,11 @@ body{
 	top: 0;
 	opacity: 0;
 	transition: 1s;
-	padding: 100px 150px;
 	height: 100vh;
+	/* padding: 100px 150px;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	grid-gap: 50px;
+	grid-gap: 50px; */
 }
 
 .contact-form input, .contact-form textarea{
