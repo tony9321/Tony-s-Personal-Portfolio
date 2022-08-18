@@ -221,6 +221,7 @@ body{
 	background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-stroke: 18px transparent;
+	margin-top: 80px;
 }
 
 /* .project-container{
