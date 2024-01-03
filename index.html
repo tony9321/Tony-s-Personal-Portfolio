@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=advice-width, initial-scale=1.0">
 	<title>Personal Portfolio</title>
-
+	<script src="https://threejs.org/build/three.js"></script>
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,44 +15,148 @@
 	<nav class="navbar">
 		<ul class="link-group">
 			<li class="link active"><a href="#">home</a></li>
-			<li class="link"><a href="#">projects</a></li>
+			<li class="link"><a href="#">projects highlights</a></li>
 			<li class="link"><a href="#">about</a></li>
 			<li class="link"><a href="#">contact</a></li>
 		</ul>
 	</nav>
 
 	<!-- home section -->
+<section class="home-section active">
+    <h1 class="hero-heading">hello, this is <br> Tony</h1>
+    <img id="switching-image" src="IMG_5428.jpg" class="home-img" alt="">
 
-	<section class="home-section active">
-		<h1 class="hero-heading">hello, this is <br> Tony</h1>
-		<img src="IMG_5428.jpg" class="home-img" alt="">
-	</section>
+    <!-- JavaScript to switch images -->
+    <script>
+        var imageElement = document.getElementById('switching-image');
+        var images = ['IMG_5428.jpg', 'fatty.png'];
+        var currentIndex = 0;
+
+        setInterval(function() {
+            currentIndex = (currentIndex + 1) % images.length;
+            imageElement.src = images[currentIndex];
+        }, 1700);
+    </script>
+
+<!-- Pong game -->
+<div id="pong-game" style="width: 100%; height: 100px; position: absolute; bottom: 0;"></div>
+
+<script>
+    var score = 0;
+    var highScore = localStorage.getItem('highScore') || 0;
+    var canvas = document.createElement('canvas');
+    canvas.width = window.innerWidth;
+    canvas.height = 100; // Adjust this to match the height of the div
+    document.getElementById('pong-game').appendChild(canvas);
+
+    var ctx = canvas.getContext('2d');
+
+    var ball = {x: canvas.width / 2, y: canvas.height / 2, radius: 10, dx: 2, dy: 2};
+    var paddle = {width: 75, height: 10, x: (canvas.width - 75) / 2, speed: 5, left: false, right: false};
+
+    function drawBall() {
+        ctx.beginPath();
+        ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+        ctx.fillStyle = '#737573'; // Darker color
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    function drawPaddle() {
+        ctx.beginPath();
+        ctx.rect(paddle.x, canvas.height - paddle.height, paddle.width, paddle.height);
+        ctx.fillStyle = '#737573'; // Darker color
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    function drawScore() {
+        ctx.font = '16px Arial';
+        ctx.fillStyle = '#737573'; // Darker color
+        ctx.fillText('Score: ' + score, 8, 20);
+    }
+
+    function drawHighScore() {
+        ctx.font = '16px Arial';
+        ctx.fillStyle = '#737573'; // Darker color
+        ctx.fillText('High Score: ' + highScore, canvas.width - 100, 20);
+    }
+
+    function animate() {
+        requestAnimationFrame(animate);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        drawBall();
+        drawPaddle();
+        drawScore();
+        drawHighScore();
+
+        ball.x += ball.dx;
+        ball.y += ball.dy;
+
+        if (ball.x + ball.dx > canvas.width - ball.radius || ball.x + ball.dx < ball.radius) {
+            ball.dx = -ball.dx;
+        }
+        if (ball.y + ball.dy < ball.radius) {
+            ball.dy = -ball.dy;
+        } else if (ball.y + ball.dy > canvas.height - ball.radius) {
+            if (ball.x > paddle.x && ball.x < paddle.x + paddle.width) {
+                ball.dy = -ball.dy;
+                ball.dx = Math.random() * 6 - 3; // Random number between -3 and 3
+                score++; // Increase score
+                if (score > highScore) {
+                    highScore = score;
+                    localStorage.setItem('highScore', highScore);
+                }
+            } else {
+                // Game over
+                ball.y = canvas.height / 2;
+                ball.dy = -ball.dy;
+                score = 0; // Reset score
+            }
+        }
+
+        if (paddle.right && paddle.x < canvas.width - paddle.width) {
+            paddle.x += paddle.speed;
+        } else if (paddle.left && paddle.x > 0) {
+            paddle.x -= paddle.speed;
+        }
+    }
+
+    document.addEventListener('keydown', function(event) {
+        switch (event.code) {
+            case 'ArrowRight':
+                paddle.right = true;
+                break;
+            case 'ArrowLeft':
+                paddle.left = true;
+                break;
+        }
+    }, false);
+
+    document.addEventListener('keyup', function(event) {
+        switch (event.code) {
+            case 'ArrowRight':
+                paddle.right = false;
+                break;
+            case 'ArrowLeft':
+                paddle.left = false;
+                break;
+        }
+    }, false);
+
+    animate();
+</script>
+
+</section>
 
 	<!-- project section -->
 	<section class="project-section">
-		<h1 class="project-heading">my open source projects</h1>
-		<div class="project-container">
+		<h1 class="project-heading">highlights for my open source projects</h1>
 			<div class="project-card">
 				<img src="project-1.png" class="project-img" alt="">
 				<div class="project-content">
 					<h1 class="project-title">project 01</h1>
-					<p class="project-info">
-						This is the project I created a year ago, got the idea while learning competitive programming. There wasn't much resources in the county I live, I learned those knowledage through an social media called Discord, and met my frineds, teachers through the Internet, that's the reason I created this project to help people find their study mates easier. This is also an Hakathon project and is open source and awarded by several orginizations.
-					</p>
-					<div class="project-btn-grp">
-					<a href='https://github.com/Swipe-For-Study-Buddies'>
-						<button class="project-btn github">github repo</button>
-					</a>
-					<a href='https://youtu.be/LvWr-KEDlhA'>
-						<button class="project-btn live">see live</button>
-					</a>
-					</div>
-				</div>
-			</div>
-			<div class="project-card">
-				<img src="project-2.png" class="project-img" alt="">
-				<div class="project-content">
-					<h1 class="project-title">project 02</h1>
 					<p class="project-info">
 						A progressive web app to address the world hunger and food waste issue by web scraping google search and store the relevant information into firebase then display the firebase data while push notification to the users when the database is updated with new information. This app can be installed on ios, android and computer.
 					</p>
@@ -66,6 +170,25 @@
 					</div>
 				</div>
 			</div>
+			<div class="project-container">
+				<div class="project-card">
+					<img src="project-2.png" class="project-img" alt="">
+					<div class="project-content">
+						<h1 class="project-title">project 02</h1>
+						<p class="project-info">
+							This is the project I created a year ago, got the idea while learning competitive programming. There wasn't much resources in the county I live, I learned those knowledage through an social media called Discord, and met my frineds, teachers through the Internet, that's the reason I created this project to help people find their study mates easier. This is also an Hakathon project and is open source and awarded by several orginizations.
+						</p>
+						<div class="project-btn-grp">
+						<a href='https://github.com/Swipe-For-Study-Buddies'>
+							<button class="project-btn github">github repo</button>
+						</a>
+						<a href='https://youtu.be/LvWr-KEDlhA'>
+							<button class="project-btn live">see live</button>
+						</a>
+						</div>
+					</div>
+				</div>
+			<!--
 			<div class="project-card">
 				<img src="project-3.png" class="project-img" alt="">
 				<div class="project-content">
@@ -100,12 +223,13 @@
 					</div>
 				</div>
 			</div>
+			-->
 			<div class="project-card">
-				<img src="project-5.png" class="project-img" alt="">
+				<img src="project-3.png" class="project-img" alt="">
 				<div class="project-content">
-					<h1 class="project-title">project 05</h1>
+					<h1 class="project-title">project 03</h1>
 					<p class="project-info">
-						This is the project I created to learn to code in solidity, web3 programming, hardhat, javascript and it's a better version of the previous smart contract project.
+						A fullstack web3 website, mainly built to code in solidity, web3 programming, hardhat, javascript. A full functioning web3 project that was later used as referenced for the company I interned at for decentrzlied smart contract project.
 					</p>
 					<div class="project-btn-grp">
 					<a href='https://github.com/tony9321/Tony-s-hardhat-and-solidity-contract'>
@@ -113,6 +237,20 @@
 					</a>
 					<a href='https://youtu.be/LvWr-KEDlhA'>
 						<button class="project-btn live">see live</button>
+					</a>
+					</div>
+				</div>
+			</div>
+			<div class="project-card">
+				<img src="project-4.png" class="project-img" alt="">
+				<div class="project-content">
+					<h1 class="project-title">🦛!!!See more projects in my github!!!🦛</h1>
+					<p class="project-info">
+						Click the button below to see more projects in my github, I have more than 20 projects in my github.
+					</p>
+					<div class="project-btn-grp">
+					<a href='https://github.com/tony9321'>
+						<button class="project-btn github">my github</button>
 					</a>
 					</div>
 				</div>

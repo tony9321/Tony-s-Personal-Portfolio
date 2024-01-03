@@ -130,6 +130,7 @@ body{
 }
 
 .navbar{
+	height: 50px;
 	width: 100%;
 	position: fixed;
 	top: 0;
@@ -297,6 +298,12 @@ body{
 	background: none;
 	border: 2px solid #fff;
 	display: none; /* Hide the live button */
+}
+
+.project-btn.github {
+    /* other styles... */
+    background-color: #ff6347; /* Tomato color */
+    /* other styles... */
 }
 
 .project-card:hover .project-img{
