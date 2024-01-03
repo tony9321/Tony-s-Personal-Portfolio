@@ -21,6 +21,7 @@ html {
     .hero-heading{
         font-size: var(--hero-heading-font-large);
 		margin-left: 150px;
+		color: #cccccc; /* Light gray */
     }
 	.home-img{
 		position: absolute;
