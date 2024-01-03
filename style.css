@@ -1,3 +1,6 @@
+html {
+    scroll-behavior: smooth;
+}
 *{
 	margin: 0;
 	padding: 0;
@@ -217,7 +220,7 @@ body{
 	text-transform: capitalize;
 	text-align: center;
 	margin-bottom: 50px;
-	color: #1a1a1a;
+	color: #696868;
 	background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-stroke: 18px transparent;
@@ -268,24 +271,32 @@ body{
 }
 
 .project-btn-grp{
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	grid-gap: 20px;
+	display: flex;
+    justify-content: center; /* Center the buttons horizontally */
 }
 
 .project-btn{
-	height: 40px;
-	text-transform: capitalize;
-	font-size: 18px;
-	border: none;
-	background: #000;
-	color: #fff;
-	cursor: pointer;
+    height: 40px;
+    text-transform: capitalize;
+    font-size: 18px;
+    border: none;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s; /* Add transition for smooth hover effect */
+    border-radius: 20px; /* Add border radius to make the button rounder */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Add box shadow for 3D effect */
+}
+
+.project-btn:hover {
+    background: #fff; /* Change background color on hover */
+    color: #000; /* Change text color on hover */
 }
 
 .project-btn.live{
 	background: none;
 	border: 2px solid #fff;
+	display: none; /* Hide the live button */
 }
 
 .project-card:hover .project-img{
@@ -345,11 +356,62 @@ body{
 	text-transform: capitalize;
 	cursor: pointer;
 	transition: .5s;
+	border-radius: 50px;
 	background: rgba(0, 0, 0, 0.5);
 }
 
 .download-cv-btn:hover{
 	background: #000;
+}
+
+.linkedin-button {
+    padding: 10px 20px;
+	color: #000;
+    border: none;
+    font-size: 21px;
+    text-transform: capitalize;
+    cursor: pointer;
+    transition: .5s;
+	background: linear-gradient(90deg, rgba(85,107,47,1) 0%, rgba(173,216,230,1) 35%, rgba(240,248,255,1) 100%);
+    box-shadow: 0px 10px 15px rgba(0,0,0,0.2);
+    border-radius: 50px;
+    animation: gradient 5s ease infinite;
+    margin-top: 20px; /* Add some space above the button */
+}
+
+.linkedin-button:hover {
+    background-position: right;
+}
+
+@keyframes gradient {
+    0% {background-position: right;}
+    50% {background-position: left;}
+    100% {background-position: right;}
+}
+
+.github-button {
+    padding: 10px 20px;
+    color: #000; /* or any dark color you prefer */
+    border: none;
+    font-size: 21px;
+    text-transform: capitalize;
+    cursor: pointer;
+    transition: .5s;
+    background: linear-gradient(90deg, rgba(255,99,71,1) 0%, rgba(255,165,0,1) 35%, rgba(255,255,0,1) 100%);
+    box-shadow: 0px 10px 15px rgba(0,0,0,0.2);
+    border-radius: 50px;
+    animation: gradient 5s ease infinite;
+    margin-top: 20px; /* Add some space above the button */
+}
+
+.github-button:hover {
+    background-position: right;
+}
+
+@keyframes gradient {
+    0% {background-position: right;}
+    50% {background-position: left;}
+    100% {background-position: right;}
 }
 
 /* skills */
